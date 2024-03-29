@@ -2,13 +2,6 @@ using MySqlConnector;
 
 namespace Back_End.Models.Interfaces
 {
-    public class Movie
-    {
-        public int MovieID { get; set; }
-        public string MovieName { get; set; }
-        public int MovieRating { get; set; }
-        public string MovieReleaseDate { get; set; }
-    }
 
     public interface IGetAllMovies
     {

@@ -20,7 +20,7 @@ namespace Back_End.Controllers
 
         // GET: api/Movies
         [HttpGet]
-        public IEnumerable<Movie> Get()
+        public IEnumerable<Models.Movie> Get()
         {
             // Call GetAllMovies method to retrieve all movies
             return _getAllMovies.GetAllMovies();
@@ -28,7 +28,7 @@ namespace Back_End.Controllers
 
         // GET: api/Movies/5
         [HttpGet("{MovieID}", Name = "Get")]
-        public ActionResult<Movie> Get(int MovieID)
+        public ActionResult<Models.Movie> Get(int MovieID)
         {
             // Call GetMovie method to retrieve a movie by its ID
             var movie = _getMovie.GetMovie(MovieID);

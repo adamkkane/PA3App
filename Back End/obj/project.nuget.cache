@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6eq2MlC67Bhk9wXITT3r1j7pR+WBkuLaGfzMxo2Os2avea9cgEt8PXVdbsot8eywPp36lzazbTqHDHt3ioA+dg==",
+  "dgSpecHash": "/6lPgZiaIWvumX1yYe16CVudxyChVCtxAihEfDPZ8nYp3H/adNxN09KfdWhEb8oxI3l+5n7BHjbDQQmCgEbZ5Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\adamk\\Documents\\MIS CODES\\MIS 321 Code NEW\\mis321-pa3-adamkkane-1\\Back End\\Back End.csproj",
+  "projectFilePath": "C:\\Users\\adamk\\Documents\\MIS CODES\\PA3App\\Back End\\Back End.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adamk\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\adamk\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",

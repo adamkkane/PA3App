@@ -19,11 +19,11 @@ namespace Back_End.Models
             List<Movie> allMovies = new List<Movie>();
 
             // MySQL connection string
-            string connectionString = "server=localhost;database=your_database_name;uid=your_username;password=your_password;";
+            string connectionString = "server=localhost;database=gtjytuh7vzr4bzmq;uid=w9qo8tyo6puecu82;password=wecn50qrwml1n2l0;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT * FROM movies";
+                string query = "SELECT * FROM Movies";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     connection.Open();

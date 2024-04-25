@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adamk\\Documents\\MIS CODES\\PA3App\\Back End\\Back End.csproj": {}
+    "C:\\Users\\adamk\\Documents\\MIS CODES\\MIS 321 Code NEW\\PA3App\\Back End\\Back End.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adamk\\Documents\\MIS CODES\\PA3App\\Back End\\Back End.csproj": {
+    "C:\\Users\\adamk\\Documents\\MIS CODES\\MIS 321 Code NEW\\PA3App\\Back End\\Back End.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adamk\\Documents\\MIS CODES\\PA3App\\Back End\\Back End.csproj",
+        "projectUniqueName": "C:\\Users\\adamk\\Documents\\MIS CODES\\MIS 321 Code NEW\\PA3App\\Back End\\Back End.csproj",
         "projectName": "Back End",
-        "projectPath": "C:\\Users\\adamk\\Documents\\MIS CODES\\PA3App\\Back End\\Back End.csproj",
+        "projectPath": "C:\\Users\\adamk\\Documents\\MIS CODES\\MIS 321 Code NEW\\PA3App\\Back End\\Back End.csproj",
         "packagesPath": "C:\\Users\\adamk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adamk\\Documents\\MIS CODES\\PA3App\\Back End\\obj\\",
+        "outputPath": "C:\\Users\\adamk\\Documents\\MIS CODES\\MIS 321 Code NEW\\PA3App\\Back End\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adamk\\AppData\\Roaming\\NuGet\\NuGet.Config"

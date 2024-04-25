@@ -9,10 +9,10 @@ namespace Back_End.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private readonly IGetAllMovies _getAllMovies;
+        private readonly ReadMovieData _getAllMovies;
         private readonly IGetMovie _getMovie;
 
-        public MoviesController(IGetAllMovies getAllMovies, IGetMovie getMovie)
+        public MoviesController(ReadMovieData getAllMovies, IGetMovie getMovie)
         {
             _getAllMovies = getAllMovies;
             _getMovie = getMovie;

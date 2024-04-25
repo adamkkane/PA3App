@@ -15,11 +15,19 @@ namespace Back_End.Models.Interfaces
             List<Movie> allMovies = new List<Movie>();
 
             // MySQL connection string
-            string connectionString = "server=localhost;database=gtjytuh7vzr4bzmq;uid=w9qo8tyo6puecu82;password=wecn50qrwml1n2l0;";
+            string server = "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+            string database = "gtjytuh7vzr4bzmq";
+            string port = "3306";
+            string username = "w9qo8tyo6puecu82";
+            string password = "wecn50qrwml1n2l0";
+
+
+            // MySQL connection string
+            string connectionString = $@"server={server};user={username};database={database};port={port};password={password};";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT * FROM movies";
+                string query = "SELECT * FROM Movies;";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     connection.Open();

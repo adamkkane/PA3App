@@ -48,7 +48,6 @@ function handleDataDelete(id) {
         myData = myData.filter(data => data.movieID != id);
         populateTable();
     })
-    .catch(error => console.error('Error deleting data:', error));
 }
 
 function handleDataPin(id) {

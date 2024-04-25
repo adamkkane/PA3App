@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<MovieUtility>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAnyOrigin",
+    options.AddPolicy("OpenPolicy",
     builder =>
     {
         builder.AllowAnyOrigin()

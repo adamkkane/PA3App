@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Cors;
-using Back_End.Models;
+using Back_End;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<MovieUtility>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAnyOrigin",
@@ -16,6 +17,8 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
+
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

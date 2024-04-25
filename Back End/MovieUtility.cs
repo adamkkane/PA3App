@@ -85,5 +85,16 @@ namespace Back_End
             cmd.Parameters.AddWithValue("@release_date", movie.MovieReleaseDate);
             cmd.ExecuteNonQuery();
         }      
+
+        public void DeleteMovie(int movieID)
+        {
+            Database db = new Database();
+            using var con = new MySqlConnection(db.cs);
+            con.Open();
+            string stm = "DELETE FROM Movies WHERE MovieID = @movie_id";
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@movie_id", movieID);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

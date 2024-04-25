@@ -2,67 +2,60 @@ using Back_End.Models;
 using Back_End;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Back_End.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
-       
+        private readonly MovieUtility _utility;
 
-        private readonly string _connectionString;
-
-        public MoviesController(IConfiguration configuration) {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+        public MoviesController(MovieUtility utility)
+        {
+            _utility = utility;
         }
 
-
-        // GET: api/Team
-        [Route("Movies")]
-        [HttpGet]
-        public List<Movie> Get()
+        [HttpGet("Movies")]
+        public IActionResult Get()
         {
-                MovieUtility utility = new MovieUtility();
-                return utility.GetAllMovies();
+            var movies = _utility.GetAllMovies();
+            return Ok(movies);
         }
- 
-        [Route("{id}")]
-        [HttpGet]
-        public Movie Get(int id)
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            MovieUtility utility = new MovieUtility();
-            List<Movie> myMovies = utility.GetAllMovies();
-            foreach(Movie movie in myMovies)
+            var movie = _utility.GetMovie(id);
+            if (movie == null)
             {
-                if(movie.MovieID == id)
-                {
-                    return movie;
-                }
+                return NotFound();
             }
-            return new Movie();
+            return Ok(movie);
         }
 
-        // POST: api/Movies
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("AddMovie")]
+        public IActionResult Post([FromBody] Movie movie)
         {
-  
+            if (movie == null)
+            {
+                return BadRequest("Movie data is null");
+            }
+            _utility.AddMovie(movie);
+            return CreatedAtAction(nameof(Get), new { id = movie.MovieID }, movie);
         }
 
-        // PUT: api/Movies/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-
-        }
-
-        // DELETE: api/Movies/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-  
+            var existingMovie = _utility.GetMovie(id);
+            if (existingMovie == null)
+            {
+                return NotFound();
+            }
+            _utility.DeleteMovie(id);
+            return NoContent();
         }
     }
 }
+
 

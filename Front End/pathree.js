@@ -17,17 +17,7 @@ function handleOnLoad() {
 }
 
 function populateTable() {
-    let html = `
-    <h2>Movie List</h2>
-    <table class="table table-striped">
-        <tr>
-            <th>Movie Name</th>
-            <th>Movie Rating</th>
-            <th>Date Released (MM/DD/YYYY)</th>
-            <th>Delete</th>
-            <th>Pin</th>
-        </tr>
-        `;
+    let html = '';
     myData.forEach(function (data) {
         let pin = data.pinned ? "✅" : "❌";
         html += `
@@ -35,12 +25,19 @@ function populateTable() {
             <td>${data.movieName}</td>
             <td>${data.movieRating}</td>
             <td>${data.movieReleaseDate}</td>
-            <td><button onclick="handleDataDelete('${data.movieID}')" class="btn btn-danger">Delete</button></td>
-            <td><button onclick="handleDataPin('${data.movieID}')">${pin}</button></td>
+            <td><button onclick="handleDataDelete(${data.movieID})" class="btn btn-danger">Delete</button></td>
+            <td><button onclick="handleDataPin(${data.movieID})">${pin}</button></td>
         </tr>`;
     });
-    html += `</table>`;
-    document.getElementById('app').innerHTML = html;
+    document.querySelector('.table').innerHTML = `
+        <tr>
+            <th>Movie Name</th>
+            <th>Movie Rating</th>
+            <th>Date Released (MM/DD/YYYY)</th>
+            <th>Delete</th>
+            <th>Pin</th>
+        </tr>
+        ${html}`;
 }
 
 function handleDataDelete(id) {
@@ -63,3 +60,39 @@ function handleDataPin(id) {
     }
     populateTable();
 }
+
+function handleAddMovie() {
+    const movieName = document.getElementById('movieName').value;
+    const movieRating = document.getElementById('movieRating').value;
+    const movieReleaseDate = document.getElementById('movieReleaseDate').value;
+
+    const newMovie = {
+        movieName: movieName,
+        movieRating: movieRating,
+        movieReleaseDate: movieReleaseDate
+    };
+
+    fetch('http://localhost:5050/api/Movies/AddMovie', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newMovie)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to add movie');
+        }
+        return response.json();
+    })
+    .then(data => {
+        myData.push(data);
+        populateTable();
+    })
+    .catch(error => console.error('Error adding movie:', error));
+}
+
+document.getElementById("addMovieForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+    handleAddMovie();
+});

@@ -1,17 +1,10 @@
-using NuGet.Protocol.Plugins;
-
-namespace Back_End.Models{
-
-public class Movie
+namespace Back_End.Models
 {
-    public int MovieID{get; set;}
-    public string MovieName{get; set;}
-    public int MovieRating{get; set;}
-    public string MovieReleaseDate{get; set;}
-
-    public override string ToString()
+    public class Movie
     {
-        return MovieID + " " + MovieName + " " + MovieRating + " " + MovieReleaseDate;
+        public int MovieID { get; set; } // Assuming this is the primary key
+        public string MovieName { get; set; } // Changed to varchar(255)
+        public int MovieRating { get; set; }
+        public DateTime MovieReleaseDate { get; set; } // Changed to date
     }
-}
 }

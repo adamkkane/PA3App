@@ -1,5 +1,5 @@
 using Back_End.Models;
-using Back_End.Models.Interfaces;
+using Back_End;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -9,34 +9,38 @@ namespace Back_End.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private readonly ReadMovieData _getAllMovies;
-        private readonly IGetMovie _getMovie;
+       
 
-        public MoviesController(ReadMovieData getAllMovies, IGetMovie getMovie)
-        {
-            _getAllMovies = getAllMovies;
-            _getMovie = getMovie;
+        private readonly string _connectionString;
+
+        public MoviesController(IConfiguration configuration) {
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // GET: api/Movies
+
+        // GET: api/Team
+        [Route("Movies")]
         [HttpGet]
-        public IEnumerable<Models.Movie> Get()
+        public List<Movie> Get()
         {
-            // Call GetAllMovies method to retrieve all movies
-            return _getAllMovies.GetAllMovies();
+                MovieUtility utility = new MovieUtility();
+                return utility.GetAllMovies();
         }
-
-        // GET: api/Movies/5
-        [HttpGet("{MovieID}", Name = "Get")]
-        public ActionResult<Models.Movie> Get(int MovieID)
+ 
+        [Route("{id}")]
+        [HttpGet]
+        public Movie Get(int id)
         {
-            // Call GetMovie method to retrieve a movie by its ID
-            var movie = _getMovie.GetMovie(MovieID);
-            if (movie == null)
+            MovieUtility utility = new MovieUtility();
+            List<Movie> myMovies = utility.GetAllMovies();
+            foreach(Movie movie in myMovies)
             {
-                return NotFound();
+                if(movie.MovieID == id)
+                {
+                    return movie;
+                }
             }
-            return movie;
+            return new Movie();
         }
 
         // POST: api/Movies
@@ -52,6 +56,24 @@ namespace Back_End.Controllers
         {
 
         }
+
+        
+        // EDIT: api/Movies/5
+        [HttpDelete("{id}")]
+        public Movie Edit(int id)
+        {
+            MovieUtility utility = new MovieUtility();
+            List<Movie> myMovies = utility.GetAllMovies();
+            foreach(Movie movie in myMovies)
+            {
+                if(movie.MovieID == id)
+                {
+                    utility.EditMovie(id,movie);
+                }
+            }
+            return new Movie();
+        }
+
 
         // DELETE: api/Movies/5
         [HttpDelete("{id}")]

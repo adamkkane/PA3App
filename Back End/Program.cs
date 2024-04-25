@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Cors;
-using Back_End.Models.Interfaces;
+using Back_End.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<IGetAllMovies, GetAllMoviesMySQL>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("OpenPolicy",
+    options.AddPolicy("AllowAnyOrigin",
     builder =>
     {
         builder.AllowAnyOrigin()

@@ -32,11 +32,11 @@ function populateTable() {
         let pin = data.pinned ? "✅" : "❌";
         html += `
         <tr>
-            <td>${data.MovieName}</td>
-            <td>${data.MovieRating}</td>
-            <td>${data.MovieReleaseDate}</td>
-            <td><button onclick="handleDataDelete('${data.MovieID}')" class="btn btn-danger">Delete</button></td>
-            <td><button onclick="handleDataPin('${data.MovieID}')">${pin}</button></td>
+            <td>${data.movieName}</td>
+            <td>${data.movieRating}</td>
+            <td>${data.movieReleaseDate}</td>
+            <td><button onclick="handleDataDelete('${data.movieID}')" class="btn btn-danger">Delete</button></td>
+            <td><button onclick="handleDataPin('${data.movieID}')">${pin}</button></td>
         </tr>`;
     });
     html += `</table>`;
@@ -48,7 +48,7 @@ function handleDataDelete(id) {
         method: 'DELETE'
     })
     .then(() => {
-        myData = myData.filter(data => data.MovieID != id);
+        myData = myData.filter(data => data.movieID != id);
         populateTable();
     })
     .catch(error => console.error('Error deleting data:', error));
@@ -56,7 +56,7 @@ function handleDataDelete(id) {
 
 function handleDataPin(id) {
     for (let i = 0; i < myData.length; i++) {
-        if (myData[i].MovieID == id) {
+        if (myData[i].movieID == id) {
             myData[i].pinned = !myData[i].pinned;
             break;
         }

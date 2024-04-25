@@ -57,24 +57,6 @@ namespace Back_End.Controllers
 
         }
 
-        
-        // EDIT: api/Movies/5
-        [HttpDelete("{id}")]
-        public Movie Edit(int id)
-        {
-            MovieUtility utility = new MovieUtility();
-            List<Movie> myMovies = utility.GetAllMovies();
-            foreach(Movie movie in myMovies)
-            {
-                if(movie.MovieID == id)
-                {
-                    utility.EditMovie(id,movie);
-                }
-            }
-            return new Movie();
-        }
-
-
         // DELETE: api/Movies/5
         [HttpDelete("{id}")]
         public void Delete(int id)
